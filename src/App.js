@@ -1,4 +1,5 @@
-import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
+import { FormControl, Input, IconButton } from "@material-ui/core";
+import SendIcon from "@material-ui/icons/Send";
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
 import FlipMove from "react-flip-move";
@@ -25,7 +26,7 @@ function App() {
 	useEffect(() => {
 		// run once when the app component load
 		db.collection("messages")
-			.orderBy("timestamp", "asc")
+			.orderBy("timestamp", "desc")
 			.onSnapshot((snapshot) => {
 				setMessages(
 					snapshot.docs.map((doc) => ({ id: doc.id, message: doc.data() }))
@@ -53,19 +54,26 @@ function App() {
 			<h1>
 				Hello, {username || "Human"}! Welcome to Facebook Messenger Clone!
 			</h1>
-			<FormControl>
-				<InputLabel>Your Message</InputLabel>
-				<Input value={input} onChange={(e) => setInput(e.target.value)} />
-				<Button
-					type="submit"
-					variant="contained"
-					color="primary"
-					onClick={sendMessage}
-					disabled={!input}
-				>
-					SEND MESSAGE
-				</Button>
-			</FormControl>
+			<form className="app__form">
+				<FormControl className="app__formControl">
+					<Input
+						placeholder="Your message"
+						value={input}
+						onChange={(e) => setInput(e.target.value)}
+						className="app__input"
+					/>
+					<IconButton
+						disabled={!input}
+						type="submit"
+						variant="contained"
+						color="primary"
+						onClick={sendMessage}
+						className="app__iconButton"
+					>
+						<SendIcon />
+					</IconButton>
+				</FormControl>
+			</form>
 			<FlipMove>
 				{messages.map(({ id, message }) => (
 					<Message key={id} username={username} message={message} />

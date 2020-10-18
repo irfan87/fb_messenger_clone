@@ -46,3 +46,6 @@ bower_components
 psd
 thumb
 sketch
+
+# hide the firebase config
+src/firebase.js
