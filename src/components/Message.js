@@ -6,12 +6,14 @@ export const Message = ({ message, username }) => {
 	const isUser = username === message.username;
 
 	return (
-		<Card className={`message ${isUser && "message__user"}`}>
-			<CardContent>
-				<Typography color="white" variant="h5" component="h2">
-					{message.username} says: {message.text_msg}
-				</Typography>
-			</CardContent>
-		</Card>
+		<div className={`message ${isUser && "message__user"}`}>
+			<Card className={isUser ? "message__userCard" : "message__guestCard"}>
+				<CardContent>
+					<Typography color="white" variant="h5" component="h2">
+						{message.username} says: {message.text_msg}
+					</Typography>
+				</CardContent>
+			</Card>
+		</div>
 	);
 };

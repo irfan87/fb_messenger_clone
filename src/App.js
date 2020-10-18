@@ -12,10 +12,6 @@ function App() {
 	const [input, setInput] = useState("");
 	const [messages, setMessages] = useState([
 		{
-			username: "irfan",
-			text_msg: "hello!",
-		},
-		{
 			username: "ivy",
 			text_msg: "hey, irfan",
 		},
